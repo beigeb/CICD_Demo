@@ -26,11 +26,8 @@ jobs:
         pip install -r requirements.txt
       # 👈 Installs Flask and other required packages
 
-    - name: Run basic test
-      run: |
-        echo "Simulating test step"
-        curl -s http://localhost:5000 || echo "No server yet (we'll add tests later)"
-      # 👈 Placeholder step — no real tests, just a dummy command
+    - name: Run tests with Pytest
+      run: pytest
 
     - name: Build Docker image
       run: docker build -t flask-app .
