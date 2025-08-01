@@ -26,8 +26,11 @@ jobs:
         pip install -r requirements.txt
       # 👈 Installs Flask and other required packages
 
-    - name: Run tests with Pytest
-      run: pytest
+    - name: Run tests
+      env:
+        PYTHONPATH: "."
+      run: |
+        pytest
 
     - name: Build Docker image
       run: docker build -t flask-app .
