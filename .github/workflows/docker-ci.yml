@@ -1,5 +1,6 @@
 name: Flask CI/CD  # 👈 This is the name that will show up in GitHub Actions tab
 
+#adding some comment 
 on:
   push:
     branches: [ main ]  # 👈 This triggers the workflow every time you push to main
