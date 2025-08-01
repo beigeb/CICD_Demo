@@ -1,0 +1,40 @@
+name: Flask CI/CD  # 👈 This is the name that will show up in GitHub Actions tab
+
+on:
+  push:
+    branches: [ main ]  # 👈 This triggers the workflow every time you push to main
+
+jobs:
+  build:  # 👈 Job name
+    runs-on: ubuntu-latest  # 👈 GitHub will use a free Ubuntu VM to run this job
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      # 👈 Checks out your repository's code onto the VM
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+      # 👈 Prepares the Python environment
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      # 👈 Installs Flask and other required packages
+
+    - name: Run basic test
+      run: |
+        echo "Simulating test step"
+        curl -s http://localhost:5000 || echo "No server yet (we'll add tests later)"
+      # 👈 Placeholder step — no real tests, just a dummy command
+
+    - name: Build Docker image
+      run: docker build -t flask-app .
+      # 👈 Builds the Docker image using your Dockerfile
+
+    - name: Push to DockerHub (Optional)
+      run: echo "Push step skipped for now"
+      # 👈 Just a placeholder. This is where you'd push the image to DockerHub later
